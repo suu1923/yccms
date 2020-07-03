@@ -1,0 +1,24 @@
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="__TMPL__/public/assets/js/jquery.js"></script>
+<script src="__TMPL__/public/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__TMPL__/public/assets/js/hover-dropdown.js"></script>
+<script defer src="__TMPL__/public/assets/js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="__TMPL__/public/assets/bxslider/jquery.bxslider.js"></script>
+
+<script src="__TMPL__/public/assets/js/wow.min.js"></script>
+<script src="__TMPL__/public/assets/js/jquery.easing.min.js"></script>
+<script src="__TMPL__/public/assets/js/link-hover.js"></script>
+<script src="__TMPL__/public/assets/js/common-scripts.js"></script>
+<script src="__STATIC__/js/frontend.js"></script>
+
+<script>
+    $(function () {
+
+        $("#search").keydown(function (e) {
+            if (e.keyCode == 13) {
+                $(this).parents("form").submit();
+            }
+        });
+    });
+</script>
+
