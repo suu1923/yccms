@@ -13,6 +13,15 @@
 
 <script>
     $(function () {
+        // 去除最后一个|
+        $(".nav-body ul").children("li:last-child").removeClass("items");
+        // 导航栏效果
+        $(".nav-body ul>li:not(':first')").mouseenter(function() {
+          $(".nav-body ul>li:not(':first')").each(function() {
+            $(this).children().removeClass("items-line")
+          })
+          $(this).children().addClass("items-line")
+        })
 
         $("#search").keydown(function (e) {
             if (e.keyCode == 13) {

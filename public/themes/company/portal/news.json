@@ -5,7 +5,12 @@
   "order": 10.0,
   "more": {
     "vars": {
-
+      "news_id": {
+        "title": "新闻分类ID",
+        "value": 2,
+        "type": "number",
+        "tip": "获取的新闻列表"
+      }
     },
     "widgets":{
     }

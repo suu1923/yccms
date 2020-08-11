@@ -99,6 +99,7 @@
             file.preview_url = file.filepath;
             file.url         = file.filepath;
             file.name        = "";//jQuery(".filelist li .title").eq(i).html();
+            file.size        = file.size;
             files.push(file);
         } else {
             var number = jQuery(".filelist li").size();
@@ -106,11 +107,14 @@
 
                 var file         = new Object();
                 var $file        = jQuery(".filelist li").eq(i);
+
                 file.id          = idPre + i;
                 file.filepath    = $file.data("filepath");
                 file.preview_url = $file.data("preview_url");//httpUrl+file.filepath;
                 file.url         = $file.data("url");
                 file.name        = $file.data("name");
+                file.size        = $file.data("size");
+
                 if (file.url == undefined) {
                     continue;
                 } else {
@@ -325,7 +329,7 @@
             // 当有文件添加进来时执行，负责view的创建
             function addFile(file) {
                 var $li       = $('<li id="' + file.id + '">' +
-                    '<p class="title">' + file.name + '</p>' +
+                    '<p class="title">' + file.name + file.size + '</p>' +
                     '<p class="imgWrap"></p>' +
                     '<p class="progress"><span></span></p>' +
                     '</li>'),
@@ -592,7 +596,7 @@
                     case 'finish':
                         stats = uploader.getStats();
                         if (stats.successNum) {
-                            //alert( '上传成功' );
+                            // alert( '上传成功' );
                         } else {
                             // 没有成功的图片，重设
                             state = 'done';
@@ -652,6 +656,7 @@
                             $file.data("name", msg.data.name);
                             $file.data("url", msg.data.url);
                             $file.data("preview_url", msg.data.preview_url);
+                            $file.data("size",msg.data.size);
                         }
                         break;
                     case 'uploadFinished':

@@ -12,6 +12,18 @@
                 "type": "image",
                 "tip": "请选择LOGO图片，建议图片底色为白色(.jpg)或透明(.png)。"
             },
+            "nav_color": {
+                "title": "导航栏颜色",
+                "value": "",
+                "type": "text",
+                "tip": "请选择导航栏颜色"
+            },
+            "card_color": {
+              "title": "卡片颜色",
+              "value": "",
+              "type": "text",
+              "tip": "请选择卡片颜色"
+            },
             "site_name": {
                 "title": "网站名称",
                 "value": "ThinkCMF模板",

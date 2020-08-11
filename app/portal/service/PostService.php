@@ -145,7 +145,6 @@ class PostService
                 ->find();
         }
 
-
         return $article;
     }
 

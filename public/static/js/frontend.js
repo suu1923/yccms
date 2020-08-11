@@ -1315,8 +1315,10 @@ function uploadMultiFile(dialog_title, container_selector, item_tpl_wrapper_id, 
             itemtpl     = itemtpl.replace(/\{preview_url\}/g, item.preview_url);
             itemtpl     = itemtpl.replace(/\{filepath\}/g, item.filepath);
             itemtpl     = itemtpl.replace(/\{name\}/g, item.name);
+            itemtpl     = itemtpl.replace(/\{size\}/g, item.size);
             html += itemtpl;
         });
+
         $(container_selector).append(html);
 
     }, extra_params, 1, filetype, app);

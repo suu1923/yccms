@@ -143,10 +143,9 @@ class AdminArticleController extends AdminBaseController
                 $data['post']['more']['files'] = [];
                 foreach ($data['file_urls'] as $key => $url) {
                     $fileUrl = cmf_asset_relative_url($url);
-                    array_push($data['post']['more']['files'], ["url" => $fileUrl, "name" => $data['file_names'][$key]]);
+                    array_push($data['post']['more']['files'], ["url" => $fileUrl, "name" => $data['file_names'][$key],"size"=>$data['file_size'][$key]]);
                 }
             }
-
 
             $portalPostModel->adminAddArticle($data['post'], $data['post']['categories']);
 
@@ -250,7 +249,7 @@ class AdminArticleController extends AdminBaseController
                 $data['post']['more']['files'] = [];
                 foreach ($data['file_urls'] as $key => $url) {
                     $fileUrl = cmf_asset_relative_url($url);
-                    array_push($data['post']['more']['files'], ["url" => $fileUrl, "name" => $data['file_names'][$key]]);
+                    array_push($data['post']['more']['files'], ["url" => $fileUrl, "name" => $data['file_names'][$key],"size"=>$data['file_size'][$key]]);
                 }
             }
 

@@ -44,12 +44,12 @@
             <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
                     data-action="{:url('AdminArticle/top',array('no'=>1))}" data-subcheck="true">取消置顶
             </button>
-            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+            <!--<button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
                     data-action="{:url('AdminArticle/recommend',array('yes'=>1))}" data-subcheck="true">推荐
             </button>
             <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
                     data-action="{:url('AdminArticle/recommend',array('no'=>1))}" data-subcheck="true">取消推荐
-            </button>
+            </button>-->
             <!--
             <notempty name="category">
                 <button class="btn btn-primary btn-sm js-articles-move" type="button">批量移动</button>
@@ -77,7 +77,6 @@
                 <th>分类</th>
                 <th width="50">作者</th>
                 <th width="65">点击量</th>
-                <th width="65">评论量</th>
                 <th width="160">关键字/来源<br>摘要/缩略图</th>
                 <th width="160">更新时间</th>
                 <th width="160">发布时间</th>
@@ -100,31 +99,31 @@
                     <td><b>{$vo.id}</b></td>
                     <td>
                         <notempty name="category">
-                            <a href="{:cmf_url('portal/Article/index',array('id'=>$vo['id'],'cid'=>$vo['category_id']))}"
-                               target="_blank">{$vo.post_title}</a>
+                            <!--<a href="{:cmf_url('portal/Article/index',array('id'=>$vo['id'],'cid'=>$vo['category_id']))}"
+                               target="_blank">{$vo.post_title}</a>-->{$vo.post_title}
                             <else/>
-                            <a href="{:cmf_url('portal/Article/index',array('id'=>$vo['id']))}"
-                               target="_blank">{$vo.post_title}</a>
+                            <!--<a href="{:cmf_url('portal/Article/index',array('id'=>$vo['id']))}"
+                               target="_blank">{$vo.post_title}</a>-->{$vo.post_title}
                         </notempty>
                     </td>
                     <td>
                         <foreach name="vo.categories" item="voo">
-                                <a class="label label-default"
+                                <!--<a class="label label-default"
                                    href="{:cmf_url('portal/List/index',array('id'=>$voo['id']))}"
                                    target="_blank"
-                                >{$voo.name}</a>
+                                >{$voo.name}</a>--><span class="label label-default">{$voo.name}</span>
                         </foreach>
                     </td>
                     <td>{$vo.user_nickname}</td>
                     <td>{$vo.post_hits|default=0}</td>
-                    <td>
+                    <!--<td>
                         <notempty name="vo.comment_count">
                             {$vo.comment_count|default='0'}
-                            <!--<a href="javascript:parent.openIframeDialog('{:url('comment/commentadmin/index',array('post_id'=>$vo['id']))}','评论列表')">{$vo.comment_count}</a>-->
+                            <!--<a href="javascript:parent.openIframeDialog('{:url('comment/commentadmin/index',array('post_id'=>$vo['id']))}','评论列表')">{$vo.comment_count}</a>
                             <else/>
                             {$vo.comment_count|default='0'}
                         </notempty>
-                    </td>
+                    </td>-->
                     <td>
                         <notempty name="vo.post_keywords">
                             <i class="fa fa-check fa-fw"></i>
@@ -175,11 +174,11 @@
                             <else/>
                             <a data-toggle="tooltip" title="未置顶"><i class="fa fa-arrow-down"></i></a>
                         </notempty>
-                        <notempty name="vo.recommended">
+                        <!--<notempty name="vo.recommended">
                             <a data-toggle="tooltip" title="已推荐"><i class="fa fa-thumbs-up"></i></a>
                             <else/>
                             <a data-toggle="tooltip" title="未推荐"><i class="fa fa-thumbs-down"></i></a>
-                        </notempty>
+                        </notempty>-->
                     </td>
                     <td>
                         <a class="btn btn-xs btn-primary" href="{:url('AdminArticle/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
@@ -200,7 +199,6 @@
                 <th>分类</th>
                 <th width="50">作者</th>
                 <th width="65">点击量</th>
-                <th width="65">评论量</th>
                 <th width="160">关键字/来源<br>摘要/缩略图</th>
                 <th width="160">更新时间</th>
                 <th width="160">发布时间</th>
@@ -227,13 +225,13 @@
             <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
                     data-action="{:url('AdminArticle/top',array('no'=>1))}" data-subcheck="true">取消置顶
             </button>
-            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+            <!--<button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
                     data-action="{:url('AdminArticle/recommend',array('yes'=>1))}" data-subcheck="true">推荐
             </button>
             <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
                     data-action="{:url('AdminArticle/recommend',array('no'=>1))}" data-subcheck="true">取消推荐
             </button>
-            <!--
+
             <notempty name="category">
                 <button class="btn btn-primary btn-sm js-articles-move" type="button">批量移动</button>
             </notempty>

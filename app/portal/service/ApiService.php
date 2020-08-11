@@ -427,6 +427,44 @@ class ApiService
     }
 
     /**
+     * 返回符合条件的指定分类
+     * @param array $param 查询参数<pre>
+     *                     array(
+     *                     'where'=>'',
+     *                     'order'=>'',
+     *                     )</pre>
+     * @return false|\PDOStatement|string|\think\Collection
+     */
+    public static function getCategory($id)
+    {
+//        dump($param);
+//        $paramWhere = empty($param['where']) ? '' : $param['where'];
+//
+//        $order = empty($param['order']) ? '' : $param['order'];
+        $id  = empty($id) ? '' : $id;
+
+        $portalCategoryModel = new PortalCategoryModel();
+
+        $where = [
+            'id'      => $id,
+            'delete_time' => 0,
+        ];
+
+//        $res = $portalCategoryModel
+//            ->where($where)
+//            ->find();
+
+//        dump($portalCategoryModel->getLastSql());
+
+//        dump($res);
+
+        return $portalCategoryModel
+            ->where($where)
+            ->find();
+    }
+
+
+    /**
      * 获取面包屑数据
      * @param int     $categoryId  当前文章所在分类,或者当前分类的id
      * @param boolean $withCurrent 是否获取当前分类

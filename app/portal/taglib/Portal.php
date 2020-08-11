@@ -25,6 +25,7 @@ class Portal extends TagLib
         'categories'       => ['attr' => 'where,order', 'close' => 1],//非必须属性item
         'subcategories'    => ['attr' => 'categoryId', 'close' => 1],//非必须属性item
         'allsubcategories' => ['attr' => 'categoryId', 'close' => 1],//非必须属性item
+        'pcategories'      => ['attr' => 'id,returnVarName','close'=>1]//非必须属性item
     ];
 
     /**
@@ -254,6 +255,25 @@ parse;
 {$content}
 </volist>
 parse;
+        return $parse;
+    }
+
+    /**
+     * 文章分类标签
+     */
+    public function tagPcategories($tag, $content)
+    {
+        $id            = empty($tag['id']) ? "1" : $tag['id']; // 标签ID
+        $returnVarName = empty($tag['returnVarName']) ? 'articles_data' : $tag['returnVarName'];
+        $id     = $this->autoBuildVar($id);
+        $parse = <<<parse
+<?php
+\${$returnVarName} = \app\portal\service\ApiService::getCategory({$id});
+  
+ ?>
+{$content}
+parse;
+
         return $parse;
     }
 

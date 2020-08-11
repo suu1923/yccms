@@ -321,7 +321,6 @@ class Upload
         if ($storage['type'] != 'Local') { //  增加存储驱动
             $watermark = cmf_get_plugin_config($storage['type']);
             $storage = new Storage($storage['type'], $storage['storages'][$storage['type']]);
-
             if ($needUploadToRemoteStorage) {
                 session_write_close();
                 $result = $storage->upload($arrInfo["file_path"], './upload/' . $arrInfo["file_path"], $fileType);
@@ -332,6 +331,8 @@ class Upload
                         'id'          => $strId,
                         'preview_url' => cmf_get_root() . '/upload/' . $arrInfo["file_path"],
                         'url'         => cmf_get_root() . '/upload/' . $arrInfo["file_path"],
+                        'size'        => $arrInfo['file_size']
+
                     ], $result);
                 }
             } else {
@@ -344,18 +345,19 @@ class Upload
                     'id'          => $strId,
                     'preview_url' => $previewUrl,
                     'url'         => $url,
+                    'size'        => $arrInfo['file_size']
                 ];
             }
 
 
         }
-
         return [
             'filepath'    => $arrInfo["file_path"],
             "name"        => $arrInfo["filename"],
             'id'          => $strId,
             'preview_url' => cmf_get_root() . '/upload/' . $arrInfo["file_path"],
             'url'         => cmf_get_root() . '/upload/' . $arrInfo["file_path"],
+            'size'        => $arrInfo['file_size']
         ];
     }
 

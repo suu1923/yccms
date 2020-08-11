@@ -18,4 +18,13 @@ class IndexController extends HomeBaseController
     {
         return $this->fetch(':index');
     }
+
+    public function grid(){
+        $data = [
+            "Name"=>"Sunxu",
+            "NowTime"=>time()
+        ];
+
+        return json_encode($data);
+    }
 }

@@ -1,0 +1,53 @@
+<!--footer start-->
+<footer class="footer" style="background:{$theme_vars['card_color']}">
+    <div class="container">
+        <div class="link">
+            <div class="left">
+                <h1>友情链接</h1>
+                <div class="content">
+                    <links>
+                        <a href="{$vo.url|default=''}" target="{$vo.target|default=''}" style="display:inline-block; margin-right:60px;width: 240px;margin-bottom: 20px;" title="{$vo.name}">
+                            {$vo.name}
+                        </a>
+                        <if($i % 3 ==0)>  <br> </if>
+                    </links>
+                </div>
+            </div>
+            <div class="right">
+                <widget name="qrcode">
+                    <notempty name="widget.vars.image">
+                        <img src="{$widget.vars.image|cmf_get_image_url}">
+                    </notempty>
+                </widget>
+            </div>
+        </div>
+
+                    
+
+
+    </div>
+    <hr>
+            <div class="copyright">
+
+                <div class="copyright-box">
+                    <div class="content">
+                    <br>
+                    {$site_info.site_name}
+                    {$theme_vars.copyright|default=''} &emsp;
+                    <notempty name="$site_info.site_icp">
+                        <a href="http://www.miitbeian.gov.cn/" target="_blank">{$site_info.site_icp}</a>
+                    <else/>
+                    请在后台设置"网站信息"设置"备案信息"
+                    </notempty>
+                    </div>
+                    <div class="img">
+                        <widget name="footer_logo">
+                            <notempty name="widget.vars.image">
+                                <img src="{$widget.vars.image|cmf_get_image_url}">
+                            </notempty>
+                        </widget>
+                    </div>
+                </div>
+            </div>
+</footer>
+<!-- footer end 

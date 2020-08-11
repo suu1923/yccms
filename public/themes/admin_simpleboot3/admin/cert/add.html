@@ -3,10 +3,11 @@
 <body>
 <div class="wrap">
     <ul class="nav nav-tabs">
-        <li><a href="{:url('cert/index')}">所有数据</a></li>
-        <li class="active"><a href="{:url('cert/add?model=1')}">添加数据</a></li>
+        <li><a href="{:url('cert/index',array('model'=>$model))}">所有数据</a></li>
+        <li class="active"><a href="{:url('cert/add',array('model'=>$model))}">添加数据</a></li>
+        <li><a href="{:url('cert/select',array('model'=>$model))}">显示控制</a></li>
     </ul>
-    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('cert/add?model=1')}">
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('cert/add',array('model'=>$model))}">
         <div class="form-group">
             <label for="input-name" class="col-sm-2 control-label">选择文件</label>
             <div class="col-md-6 col-sm-10">

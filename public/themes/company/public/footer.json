@@ -71,22 +71,22 @@
                     }
                 }
             },
-            "text_widget": {
-                "title": "图文介绍",
+            "qrcode": {
+                "title": "二维码",
                 "display": "1",
                 "vars": {
-                    "title": {
-                        "title": "信息标题",
-                        "value": "关于我们",
-                        "type": "text",
-                        "tip": "请输入标题"
-                    },
-                    "content": {
-                        "title": "文字内容",
+                    "image": {
+                        "title": "图片内容",
                         "value": "",
-                        "type": "text",
-                        "tip": "请输入文字内容"
-                    },
+                        "type": "image",
+                        "tip": "请选择图片，注意尺寸不要过大"
+                    }
+                }
+            },
+            "footer_logo":{
+                "title": "底部Logo",
+                "display": "1",
+                "vars": {
                     "image": {
                         "title": "图片内容",
                         "value": "",

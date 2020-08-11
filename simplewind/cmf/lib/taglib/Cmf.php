@@ -312,7 +312,7 @@ parse;
 <?php
      \$__LINKS__ = \app\admin\service\ApiService::links();
 ?>
-<volist name="__LINKS__" id="{$item}">
+<volist name="__LINKS__" id="{$item}" mod="4">
 {$content}
 </volist>
 parse;
