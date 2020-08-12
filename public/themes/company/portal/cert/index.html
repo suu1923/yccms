@@ -64,7 +64,7 @@
                                     </h2>
                                 </div>
                                 <div class="cert-input form-horizontal">
-                                    <form action="query" method="post" name="form1">
+                                    <form action="query"  method="post" name="form1" onsubmit="">
                                         <volist name="struct[1]" id="vo">
                                             <div class="form-group">
                                                 <label for="input-{$vo.key}" class="col-sm-3 control-label" style="font-size: 16px">
@@ -78,7 +78,7 @@
                                         <input type="hidden" name="model" value="1">
                                         <div class="form-group">
                                             <div class="">
-                                                <button type="submit" class="btn query-btn btn-lg  btn-primary js-ajax-submit"
+                                                <button type="submit" class="btn query-btn btn-lg btn-primary js-ajax-submit"
                                                 id="1">
                                                     立即查询
                                                 </button>

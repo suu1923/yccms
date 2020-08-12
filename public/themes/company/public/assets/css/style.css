@@ -2206,7 +2206,7 @@ ol.unstyled {
 /**
   MEDIA QUERIES
 */
-/* Small devices (tablets, 768px and up) */
+/* Small devices (tablets, 768px and up)
 @media  screen and  (min-width: 1200px) {
     #quote-carousel {
         margin-bottom: 0;
@@ -2229,10 +2229,10 @@ ol.unstyled {
         height: 60px !important;
     }
 
-}
-/* Small devices (tablets, up to 768px) */
+}*/
+/* Small devices (tablets, up to 768px)
 @media screen and  (max-width: 768px) {
-    /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+    /* Make the indicators larger for easier clicking with fingers/thumb on mobile
     #quote-carousel .carousel-indicators { bottom: -20px !important }
     #quote-carousel .carousel-indicators li {
         display: inline-block;
@@ -2270,7 +2270,7 @@ ol.unstyled {
 
 
 
-}
+}*/
 #filters {
     margin: 1%;
     padding: 0;
@@ -2325,11 +2325,11 @@ span.filter {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
 }
-/* #Tablet (Portrait) */
+/* #Tablet (Portrait)
 @media only screen and (min-width: 768px) and (max-width: 959px) {
     .container { width: 768px }
-}
-/*  #Mobile (Portrait) - Note: Design for a width of 320px */
+}*/
+/*  #Mobile (Portrait) - Note: Design for a width of 320px
 @media only screen and (max-width: 767px) {
     .container { width: 95% }
     #portfoliolist .portfolio {
@@ -2353,8 +2353,8 @@ span.filter {
     }    .items:after{
              content: " ";
          }
-}
-/* #Mobile (Landscape) - Note: Design for a width of 480px */
+} */
+/* #Mobile (Landscape) - Note: Design for a width of 480px
 @media only screen and (min-width: 480px) and (max-width: 767px) {
     .container { width: 70% }
     .head-section .navbar {
@@ -2375,7 +2375,7 @@ span.filter {
 
 
 }
-
+*/
 .container2{
     width: 100%;
     background-color: rgb(31,74,153) !important;
@@ -3382,7 +3382,6 @@ div.header h3{
     text-align: center;
 }
 .card-box{
-    margin-left: 50px;
     position: relative;
 }
 .card-img{
@@ -3408,7 +3407,6 @@ div.header h3{
 }
 .card-list{
     margin-top: 5px;
-    float: right;
 }
 .card-list li {
     width: 390px;
@@ -3536,8 +3534,8 @@ div.header h3{
     margin-top: 50px;
 }
 .thum{
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
     overflow:hidden;
     margin: 10px auto;
 }

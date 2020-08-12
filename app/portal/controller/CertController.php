@@ -60,12 +60,15 @@ class CertController extends HomeBaseController
         $certData = (new CertModel())->where($param)->field(implode(",",$queryKey))->find();
 
         if (!$certData){
-            $this->error("未查询到".reset($param)."的数据!");
+            $name = $param['attr_1'];
+            $resArr = "抱歉！未查询到{$name}的信息，请确认填写信息是否正确！";
+            $noRes = true;
+            $this->assign("no_res",$noRes);
+        }else{
+            $keyArr = array_combine($queryKey,$queryValue);
+            $resArr = array_merge_recursive($keyArr,$certData->toArray());
+            $resArr  =array_values($resArr);
         }
-
-        $keyArr = array_combine($queryKey,$queryValue);
-        $resArr = array_merge_recursive($keyArr,$certData->toArray());
-        $resArr  =array_values($resArr);
 
         $this->assign("data",$resArr);
 

@@ -6,7 +6,7 @@
 	<!--<link rel="stylesheet" type="text/css" href="__TMPL__/public/assets/css/parallax-slider/parallax-slider.css"/>
 	-->
 	<style>
-		@media (min-width: 1200px) { .container{ min-width: 1400px; } } .nav-tabs>li.active>a,
+		.nav-tabs>li.active>a,
 		.nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus { color: #ffffff;
 		background-color: {$theme_vars['card_color']}; border-bottom-color: transparent;
 		cursor: default; text-align: center; font-size: 18px; height: 40px; line-height:
@@ -31,7 +31,7 @@
 						<else/>
 						<div class="item">
 				</if>
-				<img src="{$vo.image|cmf_get_image_url}" alt="{$vo.title}" style="height: 600px !important;"
+				<img src="{$vo.image|cmf_get_image_url}" alt="{$vo.title}" style="height: 520px !important;"
 				/>
 				</div>
 			</slides>
@@ -201,9 +201,9 @@
                          <div class="feature-list row">
                              <portal:articles limit="4" order="post.published_time DESC" categoryIds="$widget.vars.category_left">
                                  <li <if condition="($key eq 0) OR ($key ==2)">
-                                     class="li-right-hr col-lg-6"
+                                     class="li-right-hr col-lg-6 col-xs-6 col-md-6"
                                      <else/>
-                                     class="col-lg-6"
+                                     class="col-lg-6 col-xs-6 col-md-6"
                                      </if>
                                      >
                                      <a href="{:cmf_url('portal/Article/index',array('id'=>$vo.id))}" <if condition="($key eq 0) OR ($key ==1)">
@@ -320,9 +320,9 @@
                           <div class="feature-list row">
                               <portal:articles limit="4" order="post.published_time DESC" categoryIds="$widget.vars.category_left">
                                   <li <if condition="($key eq 0) OR ($key ==2)">
-                                      class="li-right-hr col-lg-6"
+                                      class="li-right-hr col-lg-6 col-xs-6 col-md-6"
                                       <else/>
-                                      class="col-lg-6"
+                                      class="col-lg-6 col-xs-6 col-md-6"
                                       </if>
                                       >
                                       <a href="{:cmf_url('portal/Article/index',array('id'=>$vo.id))}" <if condition="($key eq 0) OR ($key ==1)">
@@ -439,9 +439,9 @@
                            <div class="feature-list row">
                                <portal:articles limit="4" order="post.published_time DESC" categoryIds="$widget.vars.category_left">
                                    <li <if condition="($key eq 0) OR ($key ==2)">
-                                       class="li-right-hr col-lg-6"
+                                       class="li-right-hr col-lg-6 col-xs-6 col-md-6"
                                        <else/>
-                                       class="col-lg-6"
+                                       class="col-lg-6 col-xs-6 col-md-6"
                                        </if>
                                        >
                                        <a href="{:cmf_url('portal/Article/index',array('id'=>$vo.id))}" <if condition="($key eq 0) OR ($key ==1)">
@@ -581,10 +581,9 @@
         });
         var mySwiper = new Swiper ('.swiper-container', {
             slidesPerView : 4,
-            centeredSlides : true,
             direction: 'horizontal', // 垂直切换选项
             loop: true, // 循环模式选项
-
+            autoplay:true,
             // 如果需要分页器
             pagination: {
               el: '.swiper-pagination',
@@ -600,11 +599,7 @@
             scrollbar: {
               el: '.swiper-scrollbar',
             },
-            on:{
-               autoplay:function(){
-                 //your code
-              },
-            }
+
           })
 
         new WOW().init();
