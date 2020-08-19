@@ -62,15 +62,18 @@ class CertController extends HomeBaseController
         if (!$certData){
             $name = $param['attr_1'];
             $resArr = "抱歉！未查询到{$name}的信息，请确认填写信息是否正确！";
-            $noRes = true;
-            $this->assign("no_res",$noRes);
+            $this->assign("no_res",true);
+            $this->assign("data",$resArr);
+
         }else{
             $keyArr = array_combine($queryKey,$queryValue);
             $resArr = array_merge_recursive($keyArr,$certData->toArray());
             $resArr  =array_values($resArr);
+            $this->assign("no_res",false);
+            $this->assign("data",$resArr);
+
         }
 
-        $this->assign("data",$resArr);
 
         return $this->fetch("query");
     }

@@ -1257,7 +1257,7 @@ ul.tag li a {
     margin-bottom: 140px;
 }
 .footer .link .left{
-    width: 80%;
+    width: 88%;
     float: left;
 }
 .footer .link .right{
@@ -3669,13 +3669,15 @@ div.header h3{
     background-color: rgb(236,248,253);
     color: #0b0b0b;
     font-weight: bold;
+    padding-top: 30px;
+
 }
 .res-item{
     text-align: center;
     height: 90px;
     border: 1px solid #cccccc;
-    line-height: 90px;
     font-size: 18px;
+    padding-top: 30px;
 }
 .res-value{
     font-size: 16px;

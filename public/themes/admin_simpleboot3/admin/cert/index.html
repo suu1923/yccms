@@ -7,14 +7,15 @@
         <li><a href="{:url('cert/add',array('model'=>$model))}">添加数据</a></li>
         <li><a href="{:url('cert/select',array('model'=>$model))}">显示控制</a></li>
     </ul>
-    <!--<form class="well form-inline margin-top-20" method="get" action="{:url('cret/index')}">
-        姓名:
-        <input type="text" class="form-control" name="name" style="width: 120px;" value="{:input('request.user_login/s','')}" placeholder="请输入姓名">
-        身份证号:
-        <input type="text" class="form-control" name="idcard" style="width: 120px;" value="{:input('request.user_email/s','')}" placeholder="请输入身份证">
+    <form class="well form-inline margin-top-20" method="get" action="{:url('cert/index')}">
+        <volist name="struct" id="str_vo">
+            {$str_vo.value}:
+            <input type="text" class="form-control" name="search[{$str_vo.key}]" required style="width: 150px;"  placeholder="请输入{$str_vo.value}">
+        </volist>
+
         <input type="submit" class="btn btn-primary" value="搜索" />
-        <a class="btn btn-danger" href="{:url('User/index')}">清空</a>
-    </form>-->
+        <a class="btn btn-danger" href="{:url('cert/index')}">清空</a>
+    </form>
 
     <table class="table table-hover table-bordered">
     <br>

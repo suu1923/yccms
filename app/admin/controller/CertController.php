@@ -14,6 +14,7 @@ use app\admin\model\CertStructureModel;
 use cmf\controller\AdminBaseController;
 use think\Exception;
 use think\Loader;
+use think\Request;
 
 /**
  * Class CertController 证书管理
@@ -25,9 +26,10 @@ class CertController extends AdminBaseController
     /**
      * 普通证书查询
      */
-    public function index(){
+    public function index(Request $request){
 
         $model = 1;
+        $search = false;
 
         // 查找到搜索条件的字段
         $certStruct = new CertStructureModel();
@@ -35,6 +37,12 @@ class CertController extends AdminBaseController
         $certWhere['value'] = ['neq',''];
         $certWhere['must']  = 1;
         $keyData = $certStruct->where($certWhere)->field("key,value")->select();
+
+
+        if ($request->param("search/a")){
+            $search = true;
+            $searchVal = $request->param("search/a");
+        }
 
         $keys = [];
         $values = [];
@@ -48,17 +56,22 @@ class CertController extends AdminBaseController
             // 找到对应的数据
             $cert = new CertModel();
             $where['model'] = $model;
+
+            // 添加查询数据
+            if ($search == true){
+                foreach ($searchVal as $item =>$value){
+                    $where[$item] = $value;
+                }
+            }
             $res = $cert->where($where)->field($field)->select();
         }else{
             $res = [];
         }
 
-
         $this->assign("keys",$keys);
         $this->assign("values",$values);
-
+        $this->assign("struct",$keyData);
         $this->assign("res",$res);
-
         $this->assign("model",$model);
         return $this->fetch('cert/index');
         
@@ -68,8 +81,9 @@ class CertController extends AdminBaseController
     /**
      * 监理数据-个人
      */
-    public function index2(){
+    public function index2(Request $request){
         $model = 2;
+        $search = false;
 
                // 查找到搜索条件的字段
         $certStruct = new CertStructureModel();
@@ -77,6 +91,11 @@ class CertController extends AdminBaseController
         $certWhere['value'] = ['neq',''];
         $certWhere['must']  = 1;
         $keyData = $certStruct->where($certWhere)->field("key,value")->select();
+
+        if ($request->param("search/a")){
+            $search = true;
+            $searchVal = $request->param("search/a");
+        }
 
         $keys = [];
         $values = [];
@@ -90,6 +109,12 @@ class CertController extends AdminBaseController
             // 找到对应的数据
             $cert = new CertModel();
             $where['model'] = $model;
+            // 添加查询数据
+            if ($search == true){
+                foreach ($searchVal as $item =>$value){
+                    $where[$item] = $value;
+                }
+            }
             $res = $cert->where($where)->field($field)->select();
         }else{
             $res = [];
@@ -100,6 +125,7 @@ class CertController extends AdminBaseController
         $this->assign("values",$values);
 
         $this->assign("res",$res);
+        $this->assign("struct",$keyData);
 
         $this->assign("model",$model);
         return $this->fetch('cert/index');
@@ -109,15 +135,21 @@ class CertController extends AdminBaseController
     /**
      * 监理数据-公司
      */
-    public function index3(){
+    public function index3(Request $request){
         $model = 3;
+        $search = false;
+
         // 查找到搜索条件的字段
-                // 查找到搜索条件的字段
         $certStruct = new CertStructureModel();
         $certWhere['model'] = $model;
         $certWhere['value'] = ['neq',''];
         $certWhere['must']  = 1;
         $keyData = $certStruct->where($certWhere)->field("key,value")->select();
+
+        if ($request->param("search/a")){
+            $search = true;
+            $searchVal = $request->param("search/a");
+        }
 
         $keys = [];
         $values = [];
@@ -131,6 +163,12 @@ class CertController extends AdminBaseController
             // 找到对应的数据
             $cert = new CertModel();
             $where['model'] = $model;
+            // 添加查询数据
+            if ($search == true){
+                foreach ($searchVal as $item =>$value){
+                    $where[$item] = $value;
+                }
+            }
             $res = $cert->where($where)->field($field)->select();
         }else{
             $res = [];
@@ -141,6 +179,7 @@ class CertController extends AdminBaseController
         $this->assign("values",$values);
 
         $this->assign("res",$res);
+        $this->assign("struct",$keyData);
 
         $this->assign("model",$model);
         return $this->fetch('cert/index');
