@@ -36,7 +36,7 @@ class CertController extends HomeBaseController
 
     // 查询数据
     public function query(){
-        $param = $this->request->param();
+        $param = $this->request->except("Rewrite");
 
         if(empty($param['model'])){
             $this->error("内部错误");
