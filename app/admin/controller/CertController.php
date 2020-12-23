@@ -473,7 +473,9 @@ class CertController extends AdminBaseController
 
                         $sheet->getColumnDimension($letterData[$i])->setWidth(strlen($value["attr_".$k])*1.2); // 设置A1宽度
                         $sheet->getStyle($letterData[$i].($key+2))->getFont()->setSize(11); // 设置A N字体大小
+                        $sheet->getStyle($letterData[$i].($key+2))->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_TEXT); // 设置单元格编码
                         $sheet->setCellValue($letterData[$i].($key+2),$value["attr_".$i]); // 设置A N 数据
+
                     }
                 }
             }
