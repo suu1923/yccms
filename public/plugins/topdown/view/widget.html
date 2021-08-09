@@ -1,0 +1,10 @@
+<div>
+    <div>
+        <span>上一篇：</span>
+        <span><a href="{:cmf_url('portal/Article/index',['id'=>$top.id,'cid'=>$cid])}" title="{$top.post_title|default=''}">{$top.post_title|default=''}</a></span>
+    </div>
+    <div>
+        <span>下一篇：</span>
+        <span><a href="{:cmf_url('portal/Article/index',['id'=>$down.id,'cid'=>$cid])}" title="{$down.post_title|default=''}">{$down.post_title|default=''}</a></span>
+    </div>
+</div>

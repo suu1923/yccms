@@ -1,0 +1,64 @@
+<extend name="public@base"/>
+<block name="head">
+    {__block__}
+    <style>
+        .ranking {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .blog-post img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</block>
+<block name="body">
+    <include file="public@breadcrumb"/>
+    <!--container start-->
+    <div class="container">
+        <div class="row">
+            <!--左侧栏目-->
+                <!-- 获取当前目录的分类-->
+                <div class="tc-box expert-categorys">
+
+                        <portal:subCategories categoryId="$category.id" item="vo">
+
+                        <div class="panel-group" id="accordion-{$vo.id}" role="tablist" aria-multiselectable="true">
+
+                          <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                              <h1 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion-{$vo.id}" href="#id-{$vo.id}" aria-expanded="true" aria-controls="collapseOne">
+                                  {$vo.name}
+                                </a>
+                              </h1>
+                            </div>
+                            <div id="id-{$vo.id}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                              <div class="panel-body expert-list">
+                                <portal:articles item="svo" order="post.published_time DESC" page="15" categoryIds="$vo.id">
+
+
+                                <div class="col-xs-2 col-sm-2 expert">
+                                <a href="{:cmf_url('portal/Article/index', ['id'=>$svo.id])}">
+                                    <img src="{:cmf_get_image_url($svo.more.thumbnail)}"  alt="">
+</a>
+                                    <p class="peopel_name">{$svo.post_title}</p>
+</div>
+
+
+                                </portal:articles>
+                              </div>
+                            </div>
+                          </div>
+
+                </div>
+
+
+                        </portal:subCategories>
+
+            </div>
+        </div>
+    </div>
+</block>

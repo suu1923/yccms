@@ -1,0 +1,21 @@
+<div class="tc-box news-categorys">
+    <ul class="list-unstyled">
+    {$category.id}
+        <portal:subCategories categoryId="2" item="vo" key="key">
+            <if condition="($Request.param.id eq $vo.id ) OR ($Request.param.c_id eq $vo.id ) ">
+                <li class="news news-active">
+            <else/>
+                <li class="news">
+            </if>
+                     <a title="{$vo.name}" href="{:cmf_url('portal/List/index',array('id'=>$vo.id))}">
+                        <if condition="empty($vo.more.thumbnail)">
+
+                        <else/>
+                            <img src="{:cmf_get_image_url($vo.more.thumbnail)}"/>
+                        </if>
+                        {$vo.name}{$key}
+                     </a>
+                </li>
+        </portal:subCategories>
+    </ul>
+</div>

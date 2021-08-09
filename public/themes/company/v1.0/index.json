@@ -1,0 +1,220 @@
+{
+    "name": "首页",
+    "action": "portal/Index/index",
+    "description": "首页模板文件",
+    "order": 10.0,
+    "more": {
+        "vars": {
+            "top_slide": {
+                "title": "顶部幻灯片",
+                "value": "1",
+                "type": "text",
+                "dataSource": {
+                    "api": "admin/Slide/index",
+                    "multi": false
+                },
+                "placeholder": "请选择顶部幻灯片",
+                "tip": "顶部幻灯片",
+                "rule": {
+                    "require": true
+                }
+            }
+        },
+        "widgets": {
+            "tablist":{
+                "title": "第一版块",
+                "display": "1",
+                "vars": {
+                    "category_id": {
+                        "title": "第一个选项卡所显示的内容",
+                        "value": "",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/Category/index",
+                            "multi": false
+                        },
+                        "placeholder": "请选择分类",
+                        "rule": {
+                            "require": true
+                        }
+                    },
+                    "category_id_two": {
+                        "title": "第二个选项卡所显示的内容",
+                        "value": "",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/Category/index",
+                            "multi": false
+                        },
+                        "placeholder": "请选择分类",
+                        "rule": {
+                            "require": true
+                        }
+                    }
+                }
+            },
+            "first_section": {
+                "title": "第一版块",
+                "display": "1",
+                "vars": {
+                    "category_id": {
+                        "title": "左侧文章分类ID",
+                        "value": "",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/Category/index",
+                            "multi": false
+                        },
+                        "placeholder": "请选择分类",
+                        "rule": {
+                            "require": true
+                        }
+                    },
+                    "category_id_two":{
+                        "title": "右侧文章分类ID",
+                        "value": "",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/Category/index",
+                            "multi": false
+                        },
+                        "placeholder": "请选择分类",
+                        "rule": {
+                            "require": true
+                        }
+                    }
+                }
+            },
+            "second_section": {
+                "title": "第二版块",
+                "display": "1",
+                "vars": {
+                    "category_id": {
+                        "title": "第一列文章ID",
+                        "value": "23",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/Category/index",
+                            "multi": false
+                        },
+                        "placeholder": "请选择分类",
+                        "rule": {
+                            "require": true
+                        }
+                    },
+                    "category_id_two":{
+                        "title": "第二列文章ID",
+                        "value": "",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/Category/index",
+                            "multi": false
+                        },
+                        "placeholder": "请选择分类",
+                        "rule": {
+                            "require": true
+                        }
+                    }
+                }
+            },
+            "third_section": {
+                "title": "第三版块",
+                "display": "1",
+                "vars": {
+                    "company": {
+                        "title": "推荐企业ID",
+                        "value": "",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/Category/index",
+                            "multi": false
+                        },
+                        "placeholder": "请选择分类",
+                        "rule": {
+                            "require": true
+                        }
+                    }
+                }
+            },
+            "fourth_section": {
+                "title": "第四版块",
+                "display": "1",
+                "vars": {
+                    "category_id": {
+                        "title": "第一列文章ID",
+                        "value": "23",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/Category/index",
+                            "multi": false
+                        },
+                        "placeholder": "请选择分类",
+                        "rule": {
+                            "require": true
+                        }
+                    },
+                    "category_id_two":{
+                        "title": "第二列文章ID",
+                        "value": "",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/Category/index",
+                            "multi": false
+                        },
+                        "placeholder": "请选择分类",
+                        "rule": {
+                            "require": true
+                        }
+                    },
+                    "category_id_three":{
+                        "title": "第三列文章ID",
+                        "value": "",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/Category/index",
+                            "multi": false
+                        },
+                        "placeholder": "请选择分类",
+                        "rule": {
+                            "require": true
+                        }
+                    }
+                }
+            },
+            "fifth_section": {
+                "title": "第五版块",
+                "display": "1",
+                "vars": {
+                    "category_id": {
+                        "title": "分类信息ID集",
+                        "value": "",
+                        "type": "text",
+                        "dataSource": {
+                            "api": "portal/Category/index",
+                            "multi": false
+                        },
+                        "tip": "请选择父类别，系统会自动获取下边的子类展示"
+                    }
+                }
+            },
+            "sixth_section": {
+                "title": "友情链接",
+                "display": "1",
+                "vars": {
+                    "section_name": {
+                        "title": "版块名称",
+                        "value": "我们的客户",
+                        "type": "text",
+                        "tip": "显示在友情链接左侧的名称"
+                    },
+                    "excerpt": {
+                        "title": "介绍文字",
+                        "value": "",
+                        "type": "text",
+                        "tip": "版块介绍文字"
+                    }
+                }
+            }
+        }
+    }
+}

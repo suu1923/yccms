@@ -1,0 +1,48 @@
+<extend name="public@base" />
+<block name="head">
+    {__block__}
+    <style>
+        .ranking { overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        } .blog-post img { width: 50px; height: 50px; }
+    </style>
+</block>
+<block name="body">
+    <!--container start-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cert">
+                    <div class="cert-img">
+                        <img src="__TMPL__/public/assets/images/cert.png" width="100%" alt="">
+                    </div>
+                    <div class="query" style="padding-top:40px;padding-bottom: 60px;height: 100%">
+                        <div id="menu1" class="container res-box">
+                            <div class="cert-title" style="border:none;margin-bottom: 20px">
+                                <h2 style="font-size:35px;color: #000">
+                                    证书查询结果
+                                </h2>
+                            </div>
+                            <div class="cert-res form-horizontal ">
+                                <div class="res-content row">
+                                    <volist name="data" id="vo">
+                                        <div class="col-sm-2 res-item res-key" >
+                                            {$vo[0]}
+                                        </div>
+                                        <div class="col-sm-4 res-item res-value" style="font-size: 14px">
+                                            {$vo[1]}
+                                        </div>
+                                    </volist>
+                                </div>
+                                <div style="text-align: center">
+                                    <button type="button" class="btn back-btn btn-lg btn-primary">
+                                        <a href="javascript:void(0)" onclick="history.go(-1)">返回查询页面</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

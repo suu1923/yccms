@@ -1,65 +1,112 @@
-<include file="public@header"/>
+<include file="public@header" />
 </head>
 <body>
-<div class="wrap js-check-wrap">
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="{:url('cert/index',array('model'=>$model))}">所有数据</a></li>
-        <li><a href="{:url('cert/add',array('model'=>$model))}">添加数据</a></li>
-        <li><a href="{:url('cert/select',array('model'=>$model))}">显示控制</a></li>
-    </ul>
-    <form class="well form-inline margin-top-20" method="get" action="{:url('cert/index')}">
-        <volist name="struct" id="str_vo">
-            {$str_vo.value}:
-            <input type="text" class="form-control" name="search[{$str_vo.key}]" required style="width: 150px;"  placeholder="请输入{$str_vo.value}">
-        </volist>
-
-        <input type="submit" class="btn btn-primary" value="搜索" />
-        <a class="btn btn-danger" href="{:url('cert/index')}">清空</a>
-    </form>
-
-    <table class="table table-hover table-bordered">
-    <br>
-
-                    <button class="btn btn-success">
-                    <a href="{:url('cert/download_data',array('model'=>$model))}" target="_blank" style="color: #ffffff">
-                                        下载数据
-                                    </a>
-    </button>
-
-    &nbsp&nbsp&nbsp&nbsp&nbsp
-    <button class="btn btn-danger">
-                        <a href="{:url('cert/delete_all',array('model'=>$model))}" onclick="if(confirm('确认删除吗？请确认已下载数据，否则无法恢复！！！')==false)return false;" target="_blank" style="color: #ffffff">
-                                            全部删除
-                                        </a>
-        </button>
-
-                            <br>
-                            <br>
-        <thead>
-            <tr>
- 
-                <foreach name='values' item='op'>
-                	<th width="60">{$op}</th>
-                </foreach>
-                <th width="160">{:lang('ACTIONS')}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <volist   name="res" id="vo" empty="暂时还没有数据">
+    <div class="wrap js-check-wrap">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="{:url('cert/index',array('model'=>$model))}">
+                    所有数据
+                </a>
+            </li>
+            <li>
+                <a href="{:url('cert/add',array('model'=>$model))}">
+                    添加数据
+                </a>
+            </li>
+        </ul>
+        <form class="well form-inline form-horizontal margin-top-20" method="get"
+        action="{:url('cert/index')}">
+            <div class="form-group">
+                <label class="control-label">
+                    选择对应的证书：
+                </label>
+                <select name="model" class="form-control model">
+                    <volist name="class" id="class_id">
+                        <if condition="$class_id['id'] eq $model">
+                            <option value="{$class_id.id}" selected>
+                                {$class_id.name}
+                            </option>
+                            <else />
+                            <option value="{$class_id.id}">
+                                {$class_id.name}
+                            </option>
+                        </if>
+                    </volist>
+                </select>
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <volist name="struct" id="str_vo">
+                    {$str_vo.value}:
+                    <input type="text" class="form-control" name="search[{$str_vo.key}]" required
+                    style="width: 150px;" placeholder="请输入{$str_vo.value}">
+                </volist>
+            </div>
+            <input type="submit" class="btn btn-primary" value="搜索" />
+            <a class="btn btn-danger" href="{:url('cert/index')}">
+                清空
+            </a>
+        </form>
+        <table class="table table-hover table-bordered">
+            <button class="btn btn-success">
+                <a href="{:url('cert/download_data',array('model'=>$model))}" target="_blank"
+                style="color: #ffffff">
+                    下载数据
+                </a>
+            </button>
+            &nbsp&nbsp&nbsp&nbsp&nbsp
+            <button class="btn btn-danger">
+                <a href="{:url('cert/delete_all',array('model'=>$model))}" onclick="if(confirm('确认删除吗？请确认已下载数据，否则无法恢复！！！')==false)return false;"
+                target="_blank" style="color: #ffffff">
+                    全部删除
+                </a>
+            </button>
+            <br>
+            <br>
+            <thead>
                 <tr>
-                	<foreach name="keys" item="voo">
-            			<th>{$vo[$voo]}</th>
-                	</foreach>
-                    <th>
-                        <a class="btn btn-xs btn-primary" href="javascript:parent.openIframeLayer('{:url('cert/look',array('id'=>$vo['id']))}','{$vo[$voo]}的详细信息',{'area':['35%','70%']});">查看全部信息</a>
-                        <a href="{:url('cert/delete',array('id'=>$vo['id']))}"
-                           class="btn btn-xs btn-danger js-ajax-delete">{:lang('DELETE')}</a>
-</th>
-</tr>
-</volist>
-        </tbody>
-    </table>
-</div>
-<script src="__STATIC__/js/admin.js"></script>
+                    <foreach name='values' item='op'>
+                        <th width="60">
+                            {$op}
+                        </th>
+                    </foreach>
+                    <th width="160">
+                        {:lang('ACTIONS')}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="res" id="vo" empty="暂时还没有数据">
+                    <tr>
+                        <foreach name="keys" item="voo">
+                            <th>
+                                {$vo[$voo]}
+                            </th>
+                        </foreach>
+                        <th>
+                            <a class="btn btn-xs btn-primary" href="javascript:parent.openIframeLayer('{:url('cert/look',array('id'=>$vo['id']))}','{$vo[$voo]}的详细信息',{'area':['35%','70%']});">
+                                查看全部信息
+                            </a>
+                            <a href="{:url('cert/delete',array('id'=>$vo['id']))}" class="btn btn-xs btn-danger js-ajax-delete">
+                                {:lang('DELETE')}
+                            </a>
+                        </th>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <div class="pagination">
+            {$page|default=''}
+        </div>
+    </div>
+    <script src="__STATIC__/js/admin.js">
+    </script>
+    <script type="text/javascript">
+        $('.model').change(function() {
+            window.location.href = "/admin/cert/index?model=" + $(this).val();
+        })
+    </script>
 </body>
+
 </html>

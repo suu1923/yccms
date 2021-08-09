@@ -1,0 +1,11 @@
+{
+    "name": "协会概况文章页",
+    "action": "portal/Article/index",
+    "description": "协会概况文章页",
+    "order": 10.0,
+    "more": {
+        "vars": {
+
+        }
+    }
+}

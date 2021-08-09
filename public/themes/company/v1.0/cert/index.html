@@ -1,0 +1,154 @@
+<extend name="public@base" />
+<block name="head">
+    {__block__}
+    <style>
+        .ranking { overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        } .blog-post img { width: 50px; height: 50px; }
+    </style>
+</block>
+<block name="body">
+    <!--container start-->
+    <div class="container">
+
+        <div class="breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-4">
+                        <h1>
+                            <img src="__TMPL__/public/assets/images/cert_logo.png" width="55" height="44" alt="">
+                            证书查询
+                        </h1>
+                    </div>
+                    <div class="col-lg-8 col-sm-8">
+                        <ol class="breadcrumb pull-right">
+                            <li><a href="__ROOT__/">首页</a></li>
+
+                            <li class="active">证书查询</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cert">
+                    <div class="cert-img">
+                        <img src="__TMPL__/public/assets/images/cert.png" width="100%" alt="">
+                    </div>
+                    <div class="query">
+                        <div class="cert-option">
+                            <ul class="nav nav-tabs ">
+                                <li role="presentation" class="active custom-li">
+                                    <a href="#menu1" data-toggle="tab">
+                                        技术职称
+                                    </a>
+                                </li>
+                                <li role="presentation" class="custom-li">
+                                    <a href="#menu2" data-toggle="tab">
+                                        船舶监理人员
+                                    </a>
+                                </li>
+                                <li role="presentation" class="custom-li">
+                                    <a href="#menu3" data-toggle="tab">
+                                        船舶监理单位
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content cert-content">
+                            <div id="menu1" class="container qeury-box tab-pane active">
+                                <div class="cert-title">
+                                    <h2>
+                                        技术职称证书查询
+                                    </h2>
+                                </div>
+                                <div class="cert-input form-horizontal">
+                                    <form action="query" method="post" name="form1">
+                                        <volist name="struct[1]" id="vo">
+                                            <div class="form-group">
+                                                <label for="input-{$vo.key}" class="col-sm-3 control-label" style="font-size: 16px">
+                                                    {$vo.value}:
+                                                </label>
+                                                <div class="col-md-6 col-sm-10">
+                                                    <input type="text" class="form-control" style="width: 80%" required id="" name="{$vo.key}" placeholder="请输入您的{$vo.value}">
+                                                </div>
+                                            </div>
+                                        </volist>
+                                        <input type="hidden" name="model" value="1">
+                                        <div class="form-group">
+                                            <div class="">
+                                                <button type="submit" class="btn query-btn btn-lg  btn-primary js-ajax-submit"
+                                                id="1">
+                                                    立即查询
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div id="menu2" class="container qeury-box tab-pane ">
+                                <div class="cert-title">
+                                    <h2>
+                                        船舶监理人员证书查询
+                                    </h2>
+                                </div>
+                                <div class="cert-input form-horizontal">
+                                    <form action="query" method="post" name="form2">
+                                        <volist name="struct[2]" id="vo">
+                                            <div class="form-group">
+                                                <label for="input-{$vo.key}" class=" col-sm-3 control-label" style="font-size: 16px">
+                                                    {$vo.value}:
+                                                </label>
+                                                <div class="col-md-6 col-sm-10">
+                                                    <input type="text" class="form-control"  style="width: 80%" id="" name="{$vo.key}" placeholder="请输入您的{$vo.value}">
+                                                </div>
+                                            </div>
+                                        </volist>
+                                        <input type="hidden" name="model" value="2">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn query-btn btn-lg btn-primary js-ajax-submit"
+                                            id="2">
+                                                立即查询
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="menu3" class="container qeury-box tab-pane fade">
+                                <div class="cert-title">
+                                    <h2>
+                                        船舶监理单位证书查询
+                                    </h2>
+                                </div>
+                                <div class="cert-input form-horizontal">
+                                    <form action="query" method="post" name="form3">
+                                        <volist name="struct[3]" id="vo">
+                                            <div class="form-group">
+                                                <label for="input-{$vo.key}" class=" col-sm-3 control-label" style="font-size: 16px">
+                                                    {$vo.value}:
+                                                </label>
+                                                <div class="col-md-6 col-sm-10">
+                                                    <input type="text" class="form-control"  style="width: 80%" required id="" name="{$vo.key}" placeholder="请输入您的{$vo.value}">
+                                                </div>
+                                            </div>
+                                        </volist>
+                                        <input type="hidden" name="model" value="3">
+                                        <div class="form-group">
+                                            <div class="">
+                                                <button type="submit" class="btn query-btn btn-lg btn-primary" id="3">
+                                                    立即查询
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

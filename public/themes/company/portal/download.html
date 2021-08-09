@@ -1,0 +1,63 @@
+<extend name="public@base"/>
+<block name="head">
+    {__block__}
+<style>
+    .article_content img {
+        height: auto !important;
+        max-width: 100%;
+    }
+
+    .article_attr{
+        text-align: center;
+    }
+    .article_attr h1{
+        font-size: 30px;
+        color: #000000;
+    }
+</style>
+    <js href="__STATIC__/js/ueditor/ueditor.parse.min.js"/>
+</block>
+<block name="body">
+    <include file="public@breadcrumb"/>
+    <!--container start-->
+    <div class="container">
+        <div class="row">
+            <!--右侧栏目-->
+            <!--blog start-->
+            <div class="col-lg-12">
+                <div class="blog-item">
+                <hr>
+                <volist name="$article.more.files" id="vo" length='1'>
+
+                    <div class="donwload_name">
+                        <span>
+                        <img src="__TMPL__/public/assets/images/annex.png" width="27px"  alt="">
+                                                {$vo.name}
+                        </span>
+                    </div>
+                    <div class="download_introduce">
+                        <ul>
+                            <li><b>·</b>文件大小：{$vo.size|cmf_file_size_format}</li>
+                            <!--<li><b>·</b>{$article.post_excerpt}</li>-->
+                            <li>
+                                <div class="mar-b-30 article_content">{$article.post_content}</div>
+                            <li>
+                            <button class="download_btn btn btn-primary btn-lg"><a href="{$vo.url|cmf_get_file_download_url}">马上下载</a></button></li>
+                        </ul>
+                    </div>
+                </volist>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--container end-->
+</block>
+<block name="scripts">
+    {__block__}
+    <script type="text/javascript">
+        $(function () {
+            uParse("#content", {rootPath: "__STATIC__/js/ueditor"});
+        });
+    </script>
+</block>

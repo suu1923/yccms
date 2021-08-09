@@ -1,0 +1,10 @@
+{
+    "name": "下载内容页",
+    "action": "portal/Article/index",
+    "description": "下载内容页",
+    "order": 10.0,
+    "more": {
+        "vars": {
+        }
+    }
+}

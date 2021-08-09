@@ -1,0 +1,1 @@
+<?php/** * Created by PhpStorm. * User: a1538_000 * Date: 2020/7/14 * Time: 22:49 */namespace app\admin\model;use think\Model;class CertStructureModel extends Model{}

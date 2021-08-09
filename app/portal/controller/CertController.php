@@ -9,6 +9,7 @@
 namespace app\portal\controller;
 
 
+use app\admin\model\CertClassModel;
 use app\portal\model\CertModel;
 use app\portal\model\CertStructureModel;
 use cmf\controller\HomeBaseController;
@@ -20,16 +21,26 @@ class CertController extends HomeBaseController
 
         // 获取到model 为 1,2,3的查询的key及value
 
+        $class = (new CertClassModel())->select();
+
+        $model = $this->request->param('model') ? $this->request->param('model') : $class[0]['id'];
+
+        $where['model'] = $model;
         $where['must'] = 1;
 
         $certStruct = (new CertStructureModel())->where($where)->field("key,value,model")->select();
 
-        $result = [];
-        foreach ($certStruct->toArray() as $item =>$value){
-            $result[$value['model']][] = $value;
-        }
 
-        $this->assign("struct",$result);
+//        $result = [];
+//        foreach ($certStruct->toArray() as $item =>$value){
+//            $result[$value['model']][] = $value;
+//        }
+
+
+//        dump($certStruct->toArray());
+        $this->assign('model',$model);
+        $this->assign('class',$class);
+        $this->assign("struct",$certStruct);
 
         return $this->fetch("index");
     }
@@ -41,7 +52,6 @@ class CertController extends HomeBaseController
         if(empty($param['model'])){
             $this->error("内部错误");
         };
-
         // 查询
         $where['show'] = 1;
         $where['model'] = $param['model'];
@@ -54,9 +64,6 @@ class CertController extends HomeBaseController
             array_push($queryValue,$value['value']);
         }
 
-//        技术职称
-//        船舶监理人员
-//        船舶监理单位
         $certData = (new CertModel())->where($param)->field(implode(",",$queryKey))->find();
 
         if (!$certData){
@@ -73,8 +80,6 @@ class CertController extends HomeBaseController
             $this->assign("data",$resArr);
 
         }
-
-
         return $this->fetch("query");
     }
 }

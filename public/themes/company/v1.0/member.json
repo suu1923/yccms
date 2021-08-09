@@ -1,0 +1,13 @@
+{
+  "name": "会员之窗页",
+  "action": "portal/List/index",
+  "description": "会员之窗页",
+  "order": 10.0,
+  "more": {
+    "vars": {
+
+    },
+    "widgets":{
+    }
+  }
+}

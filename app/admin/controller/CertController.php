@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 
+use app\admin\model\CertClassModel;
 use app\admin\model\CertModel;
 use app\admin\model\CertStructureModel;
 use cmf\controller\AdminBaseController;
@@ -27,9 +28,12 @@ class CertController extends AdminBaseController
      * 普通证书查询
      */
     public function index(Request $request){
+        // 获取全部证书分类
+        $class = (new CertClassModel())->select();
 
-        $model = 1;
+        $model = $this->request->param('model') ? $this->request->param('model') : $class[0]['id'];
         $search = false;
+
 
         // 查找到搜索条件的字段
         $certStruct = new CertStructureModel();
@@ -37,7 +41,6 @@ class CertController extends AdminBaseController
         $certWhere['value'] = ['neq',''];
         $certWhere['must']  = 1;
         $keyData = $certStruct->where($certWhere)->field("key,value")->select();
-
 
         if ($request->param("search/a")){
             $search = true;
@@ -63,11 +66,15 @@ class CertController extends AdminBaseController
                     $where[$item] = $value;
                 }
             }
-            $res = $cert->where($where)->field($field)->select();
+            $res = $cert->where($where)->field($field)->paginate('10',false,['query'=>Request::instance()->param()]);
         }else{
             $res = [];
         }
 
+        $page = $res->render();
+
+        $this->assign('page',$page);
+        $this->assign('class',$class);
         $this->assign("keys",$keys);
         $this->assign("values",$values);
         $this->assign("struct",$keyData);
@@ -77,126 +84,19 @@ class CertController extends AdminBaseController
         
     }
 
-
-    /**
-     * 监理数据-个人
-     */
-    public function index2(Request $request){
-        $model = 2;
-        $search = false;
-
-               // 查找到搜索条件的字段
-        $certStruct = new CertStructureModel();
-        $certWhere['model'] = $model;
-        $certWhere['value'] = ['neq',''];
-        $certWhere['must']  = 1;
-        $keyData = $certStruct->where($certWhere)->field("key,value")->select();
-
-        if ($request->param("search/a")){
-            $search = true;
-            $searchVal = $request->param("search/a");
-        }
-
-        $keys = [];
-        $values = [];
-        foreach ($keyData as $key => $value) {
-            array_push($keys, $value['key']);
-            array_push($values, $value['value']);
-        }
-        if ($keys){
-
-            $field = "id,".implode(",",$keys);
-            // 找到对应的数据
-            $cert = new CertModel();
-            $where['model'] = $model;
-            // 添加查询数据
-            if ($search == true){
-                foreach ($searchVal as $item =>$value){
-                    $where[$item] = $value;
-                }
-            }
-            $res = $cert->where($where)->field($field)->select();
-        }else{
-            $res = [];
-        }
-
-
-        $this->assign("keys",$keys);
-        $this->assign("values",$values);
-
-        $this->assign("res",$res);
-        $this->assign("struct",$keyData);
-
-        $this->assign("model",$model);
-        return $this->fetch('cert/index');
-    }
-
-
-    /**
-     * 监理数据-公司
-     */
-    public function index3(Request $request){
-        $model = 3;
-        $search = false;
-
-        // 查找到搜索条件的字段
-        $certStruct = new CertStructureModel();
-        $certWhere['model'] = $model;
-        $certWhere['value'] = ['neq',''];
-        $certWhere['must']  = 1;
-        $keyData = $certStruct->where($certWhere)->field("key,value")->select();
-
-        if ($request->param("search/a")){
-            $search = true;
-            $searchVal = $request->param("search/a");
-        }
-
-        $keys = [];
-        $values = [];
-        foreach ($keyData as $key => $value) {
-            array_push($keys, $value['key']);
-            array_push($values, $value['value']);
-        }
-        if ($keys){
-
-            $field = "id,".implode(",",$keys);
-            // 找到对应的数据
-            $cert = new CertModel();
-            $where['model'] = $model;
-            // 添加查询数据
-            if ($search == true){
-                foreach ($searchVal as $item =>$value){
-                    $where[$item] = $value;
-                }
-            }
-            $res = $cert->where($where)->field($field)->select();
-        }else{
-            $res = [];
-        }
-
-
-        $this->assign("keys",$keys);
-        $this->assign("values",$values);
-
-        $this->assign("res",$res);
-        $this->assign("struct",$keyData);
-
-        $this->assign("model",$model);
-        return $this->fetch('cert/index');
-    }
-
-
     /**
      * 批量上传
      * @param $model 分类ID
      * @throws \PHPExcel_Reader_Exception
      */
-    public function add($model){
-        if (empty($model)) $this->error("模型错误");
-        $model = $this->request->param('model');
+    public function add(){
         if ($this->request->isPost()){
             $excel_name = $this->request->param('file_name');
             $excel_url = $this->request->param('file_url');
+            $model = $this->request->param('model');
+            if (empty($model)) {
+                return $this->error('请选择类型');
+            }
             if(!empty($excel_name) && !empty($excel_url)){
                 Loader::import('PHPExcel.Classes.PHPExcel');
                 Loader::import('PHPExcel.Classes.PHPExcel.IOFactory.PHPExcel_IOFactory');
@@ -205,11 +105,9 @@ class CertController extends AdminBaseController
                 $filename = ROOT_PATH.'public/upload/'.$excel_url;  //文件路径
                 $extension = cmf_get_file_extension($excel_url);    //文件扩展名
                 if($extension == 'xlsx'){
-//                    $objReader =\PHPExcel_IOFactory::createReader('Excel2007');
                     $objReader = new \PHPExcel_Reader_Excel2007();
                     $objPHPExcel = $objReader->load($filename);  //加载文件内容,编码utf-8
                 }else if($extension == 'xls'){
-//                    $objReader =\PHPExcel_IOFactory::createReader('Excel5');
                     $objReader = new \PHPExcel_Reader_Excel5();
                     $objPHPExcel = $objReader->load($filename);  //加载文件内容,编码utf-8
                 }else{
@@ -251,7 +149,9 @@ class CertController extends AdminBaseController
             }
         }else{
 
-            $this->assign("model",$model);
+            $class = (new CertClassModel())->select();
+
+            $this->assign('class',$class);
 
             return $this->fetch();
         }
@@ -353,6 +253,8 @@ class CertController extends AdminBaseController
 
         if (empty($model)) $this->error("模型错误");
 
+        $model_CN = (new CertClassModel())->where('id',$model)->value('name');
+
         //所有数据
         $data = (new CertStructureModel())->where(["model"=>$model,"value"=>array('neq','')])->column("value");
 
@@ -384,9 +286,9 @@ class CertController extends AdminBaseController
                 mkdir($filepath);
                 chmod($filepath,0777);
             }
-            (new \PHPExcel_Writer_Excel5($objExcel))->save($filepath."/Model{$model}.xls");
+            (new \PHPExcel_Writer_Excel5($objExcel))->save($filepath."/{$model_CN} 类别的模板.xls");
 
-            $filename = "Model{$model}.xls";
+            $filename = "{$model_CN} 类别的模板.xls";
             $content = file_get_contents($filepath."/".$filename);
 
             $filesize = filesize($filepath."/".$filename);

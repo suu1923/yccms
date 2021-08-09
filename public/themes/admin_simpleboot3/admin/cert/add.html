@@ -3,21 +3,29 @@
 <body>
 <div class="wrap">
     <ul class="nav nav-tabs">
-        <li><a href="{:url('cert/index',array('model'=>$model))}">所有数据</a></li>
-        <li class="active"><a href="{:url('cert/add',array('model'=>$model))}">添加数据</a></li>
-        <li><a href="{:url('cert/select',array('model'=>$model))}">显示控制</a></li>
+        <li><a href="{:url('cert/index')}">所有数据</a></li>
+        <li class="active"><a href="{:url('cert/add')}">添加数据</a></li>
     </ul>
-    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('cert/add',array('model'=>$model))}">
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('cert/add')}">
+        <div class="form-group">
+            <label for="input-name" class="col-sm-2 control-label">选择对应的证书</label>
+            <div class="col-md-6 col-sm-10">
+                <select name="model" class="form-control col-md-6 col-sm-10" required>
+                    <volist name="class" id="class_id">
+                        <option value="{$class_id.id}">{$class_id.name}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
         <div class="form-group">
             <label for="input-name" class="col-sm-2 control-label">选择文件</label>
             <div class="col-md-6 col-sm-10">
                 <input id="photo-1" type="hidden" name="file_url" >
-                <input id="photo-1-name" type="text" name="file_name" >
+                <input id="photo-1-name" class="form-control" type="text" name="file_name" >
                 <!--<img id="photo-1-preview" >-->
                 <a href="javascript:uploadOne('数据文件上传','#photo-1','file');">上传</a>
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>

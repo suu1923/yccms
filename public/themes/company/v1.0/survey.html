@@ -1,0 +1,45 @@
+<extend name="public@base"/>
+<block name="head">
+    {__block__}
+    <style>
+        .ranking {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .blog-post img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</block>
+<block name="body">
+    <include file="public@breadcrumb"/>
+    <!--container start-->
+    <div class="container">
+        <div class="row">
+            <!--左侧栏目-->
+            <div class="col-lg-3 mar-b-30">
+                <!-- 获取当前目录的分类-->
+                <div class="tc-box news-categorys">
+                    <ul class="list-unstyled">
+                        <portal:subCategories categoryId="1" item="vo">
+                            <if condition="($Request.param.id eq $vo.id )  OR ($Request.param.c_id eq $vo.id )">
+                                <li class="news news-active">
+                            <else/>
+                                <li class="news">
+                            </if>
+                            <php>$aid = getFirstArticleId($vo['id']);</php>
+                             <a title="{$vo.name}" href="{:cmf_url('portal/Article/index',array('id'=>$aid,'c_id'=>$vo['id']))}">
+                                {$vo.name}
+                             </a>
+                            </li>
+                        </portal:subCategories>
+                    </ul>
+                </div>
+            </div>
+            <!--文章列表-->
+        </div>
+    </div>
+</block>

@@ -3674,13 +3674,18 @@ div.header h3{
 }
 .res-item{
     text-align: center;
-    height: 90px;
+    height: 80px;
+    font-weight:bold;
     border: 1px solid #cccccc;
     font-size: 18px;
     padding-top: 30px;
+    text-align:center
 }
 .res-value{
     font-size: 16px;
+    text-align:center;
+    font-weight:bold;
+
 }
 .back-btn{
     width: 20%;

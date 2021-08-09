@@ -1,0 +1,10 @@
+{
+    "name": "文章页（只展示内容）",
+    "action": "portal/Article/index",
+    "description": "文章页模板文件（只展示内容）",
+    "order": 10.0,
+    "more": {
+        "vars": {
+        }
+    }
+}

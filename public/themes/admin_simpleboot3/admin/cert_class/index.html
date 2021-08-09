@@ -1,0 +1,37 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('cert_class/index')}">所有数据</a></li>
+        <li><a href="{:url('cert_class/add')}">添加数据</a></li>
+    </ul>
+    <br>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th width="10%">ID</th>
+                <th width="40%">证书分类名称</th>
+                <th width="50%">{:lang('ACTIONS')}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <volist  name="res" id="vo" empty="暂时还没有数据">
+                <tr>
+                    <th>{$vo.id}</th>
+                    <th>{$vo.name}</th>
+                    <th>
+                        <a href=""></a>
+                        <a class="btn btn-xs btn-primary" href="javascript:parent.openIframeLayer('{:url('cert/select',array('model'=>$vo['id']))}','{$vo["name"]}的结构配置',{'area':['60%','90%']});">结构编辑</a>
+                        <a href="{:url('cert_class/edit')}">编辑</a>
+                        <a href="{:url('cert_class/delete',array('id'=>$vo['id']))}"
+                           class="btn btn-xs btn-danger js-ajax-delete">{:lang('DELETE')}</a>
+                    </th>
+                </tr>
+            </volist>
+        </tbody>
+    </table>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<extend name="public@base"/>
+<block name="head">
+    {__block__}
+    <style>
+        .ranking {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .blog-post img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</block>
+<block name="body">
+    <include file="public@breadcrumb"/>
+    <!--container start col-lg-6-->
+    <div class="container">
+        <!--分类列表-->
+        <div class="row member">
+            <portal:subCategories categoryId="$category.id" item="vo">
+               <!-- <if condition="$key == 0">
+                    <li class="col-lg-12">
+                        <div class="member-cate" >
+                            <p style="text-align: center">{$vo.name}</p>
+                        </div>
+                        <div class="member-list" style="height: 100px">
+                            <ul>
+                                <portal:articles item="vo2" order="post.published_time DESC" limit="1" categoryIds="$vo.id">
+                                     <div class="mar-b-30 article_content"  style="width: 60%;margin: 0 auto;text-align: center">
+
+                                        <li style="border: none">
+                                            <span class="member-title" style="border: none">
+                                        <a href="{:cmf_url('portal/Article/index', ['id'=>$vo2.id,'c_id'=>$Request.param.id])}">
+                                              {$vo2.post_title}
+                                         </a>
+                                            </span>
+                                            <span class="member-time">{$vo2.published_time|date='Y-m-d',###}</span>
+                                        </li>
+</div>
+                                </portal:articles>
+                            </ul>
+                            <p class="more"><a href="{:cmf_url('portal/List/index',array('id'=>$vo.id))}">更多>></a></p>
+                        </div>
+                    </li>
+                <elseif condition="$key+1 != count($portal_sub_categories_data)"/> -->
+                    <li class="col-lg-6">
+                        <div class="member-cate">
+                            <p>{$vo.name}</p>
+                        </div>
+                        <div class="member-list">
+                            <ul>
+                                <portal:articles item="vo2" order="post.published_time DESC" limit="6" categoryIds="$vo.id">
+                                    <li>
+                                        <b>·</b>
+                                        <span class="member-title">
+                                            <a href="{:cmf_url('portal/Article/index', ['id'=>$vo2.id,'c_id'=>$Request.param.id])}">
+                                                  {$vo2.post_title}
+                                             </a>
+                                        </span>
+                                        <!--<span class="member-time">{$vo2.published_time|date='Y-m-d',###}</span>-->
+                                    </li>
+                                </portal:articles>
+
+                            </ul>
+                            <p class="more"><a href="{:cmf_url('portal/List/index',array('id'=>$vo.id))}">更多>></a></p>
+                        </div>
+                    </li>
+<!--                </if>-->
+
+            </portal:subCategories>
+        </div>
+    </div>
+</block>

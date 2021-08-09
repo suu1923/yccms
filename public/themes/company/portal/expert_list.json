@@ -1,0 +1,13 @@
+{
+  "name": "行业专家列表页",
+  "action": "portal/List/index",
+  "description": "行业专家列表页",
+  "order": 10.0,
+  "more": {
+    "vars": {
+
+    },
+    "widgets":{
+    }
+  }
+}
